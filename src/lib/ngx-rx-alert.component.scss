@@ -1,0 +1,20 @@
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  margin: 0.5em;
+}
+
+.button-area {
+  text-align: right; // justify-content: flex-end;
+  button {
+    margin: 0 2px;
+  }
+}
+
+article {
+  padding-left: 0.3em;
+}

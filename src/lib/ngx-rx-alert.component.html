@@ -1,0 +1,49 @@
+<div cdkTrapFocus cdkTrapFocusAutoCapture>
+
+  <div class="content"  role="dialog">
+    <h2 class="align-center" *ngIf="classList[data.type] as typeData">
+      <mat-icon [ngClass]="typeData.class">{{typeData.icon}}</mat-icon>
+
+      <!-- <i class="mat-icon material-icons" [ngClass]="typeData.class">{{typeData.icon}}</i> -->
+      <span *ngIf="data.title">{{data.title}}</span>
+      <!-- use for center the title  -->
+      <i></i>
+    </h2>
+    <article>
+      {{data.message}}
+    </article>
+    <ng-container *ngIf="data.hasInput">
+
+      <ng-container [ngSwitch]="data.inputType">
+
+        <ng-container *ngSwitchCase="'textarea'">
+          <mat-form-field color="accent" class="width-full" *ngIf="data.inputType==='textarea'">
+            <textarea matInput [(ngModel)]="message" cdkFocusInitial
+              matTextareaAutosize
+              matAutosizeMaxRows="3"
+              matAutosizeMinRows="3"
+              autocomplete="off"></textarea>
+          </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'input'">
+          <mat-form-field color="accent" class="width-full">
+            <input matInput cdkFocusInitial autocomplete="off" [(ngModel)]="message" (keyup.enter)="ok()">
+          </mat-form-field>
+        </ng-container>
+
+      </ng-container>
+
+    </ng-container>
+  </div>
+
+  <div class="button-area">
+    <button mat-raised-button color="primary"
+            (click)="ok()" cdkFocusInitial
+            cdkFocusInitial>確定</button>
+    <button mat-raised-button
+            *ngIf="isConfirm"
+            color="warn"
+            (click)="cancel()" >取消</button>
+  </div>
+</div>
