@@ -16,7 +16,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     A11yModule
   ],
   declarations: [
-    NgxRxAlertComponent
+    NgxRxAlertComponent,
   ],
   entryComponents: [
     NgxRxAlertComponent

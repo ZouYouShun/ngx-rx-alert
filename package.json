@@ -1,11 +1,9 @@
 {
   "name": "ngx-rx-alert",
-  "version": "0.0.1",
-  "dependencies": {
-    "ngx-rx-modal": "0.0.1"
-  },
+  "version": "0.0.10",
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "ngx-rx-modal": "0.0.9",
+    "@angular/common": ">=6.0.0",
+    "@angular/core": ">=6.0.0"
   }
 }

@@ -9,8 +9,7 @@
       <!-- use for center the title  -->
       <i></i>
     </h2>
-    <article>
-      {{data.message}}
+    <article [innerHTML]="data.message">
     </article>
     <ng-container *ngIf="data.hasInput">
 
@@ -38,12 +37,12 @@
   </div>
 
   <div class="button-area">
-    <button mat-raised-button color="primary"
-            (click)="ok()" cdkFocusInitial
-            cdkFocusInitial>確定</button>
     <button mat-raised-button
             *ngIf="isConfirm"
             color="warn"
             (click)="cancel()" >取消</button>
+    <button mat-raised-button color="primary"
+            (click)="ok()" #okElm
+            cdkFocusInitial>確定</button>
   </div>
 </div>

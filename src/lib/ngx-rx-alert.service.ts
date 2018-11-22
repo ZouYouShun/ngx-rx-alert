@@ -2,7 +2,7 @@ import { NgxRxModalService } from 'ngx-rx-modal';
 
 import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
-import { NgxRxAlertModel, DIALOG_TYPE } from './ngx-rx-alert.model';
+import { NgxRxAlertModel, DIALOG_TYPE, NgxRxAlertOption } from './ngx-rx-alert.model';
 import { NgxRxAlertComponent } from './ngx-rx-alert.component';
 
 @Injectable({
@@ -15,15 +15,15 @@ export class NgxRxAlertService {
     private _factory: ComponentFactoryResolver
   ) { }
 
-  confirm(obj: NgxRxAlertModel | string): Observable<any> {
-    return this.openDialog(obj, DIALOG_TYPE.CONFIRM);
+  confirm(obj: NgxRxAlertModel | string, option: NgxRxAlertOption = {}): Observable<any> {
+    return this.openDialog(obj, DIALOG_TYPE.CONFIRM, option);
   }
 
-  alert(obj: NgxRxAlertModel | string): Observable<any> {
-    return this.openDialog(obj, DIALOG_TYPE.ALERT);
+  alert(obj: NgxRxAlertModel | string, option: NgxRxAlertOption = {}): Observable<any> {
+    return this.openDialog(obj, DIALOG_TYPE.ALERT, option);
   }
 
-  private openDialog(obj: NgxRxAlertModel | string, type: DIALOG_TYPE) {
+  private openDialog(obj: NgxRxAlertModel | string, type: DIALOG_TYPE, option: NgxRxAlertOption) {
     let _obj: NgxRxAlertModel;
 
     if (typeof (obj) === 'string') {
@@ -55,11 +55,13 @@ export class NgxRxAlertService {
           disableClose: _obj.disableClose,
           disableCloseButton: true,
           backdropClass: 'backdrop center',
+          panelClass: 'bg-dialog',
           panelStyle: {
             // height: '50%',
             width: '50%',
           },
-          windowAnimate: animate
+          windowAnimate: animate,
+          noRedirect: option.noRedirect
         })
         .subscribe(result => {
           if (type === DIALOG_TYPE.ALERT) {

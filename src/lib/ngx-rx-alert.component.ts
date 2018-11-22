@@ -1,7 +1,8 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, HostListener, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NgxRxModalRef, NGX_RX_MODAL_TOKEN } from 'ngx-rx-modal';
 import { NgxRxAlertModel, DIALOG_TYPE } from './ngx-rx-alert.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 interface InputData {
   data: NgxRxAlertModel;
@@ -13,7 +14,8 @@ interface InputData {
   templateUrl: './ngx-rx-alert.component.html',
   styleUrls: ['./ngx-rx-alert.component.scss']
 })
-export class NgxRxAlertComponent implements NgxRxModalRef {
+export class NgxRxAlertComponent implements NgxRxModalRef, AfterViewInit {
+  @ViewChild('okElm', { read: ElementRef }) okElm: ElementRef;
   complete = new Subject();
 
   message = '';
@@ -46,13 +48,20 @@ export class NgxRxAlertComponent implements NgxRxModalRef {
     this.cancel();
   }
 
-  constructor(@Inject(NGX_RX_MODAL_TOKEN) source: InputData) {
-    this.data = {
-      ...source.data,
-      type: source.data.type || 'info'
-    };
+  constructor(
+    @Inject(NGX_RX_MODAL_TOKEN) source: InputData,
+    private _sanitizer: DomSanitizer
+  ) {
+    this.data = source.data;
+    this.data.message = this._sanitizer.bypassSecurityTrustHtml(this.data.message) as string;
 
     this.isConfirm = source.type === DIALOG_TYPE.CONFIRM;
+  }
+
+  ngAfterViewInit(): void {
+    if (this.okElm) {
+      this.okElm.nativeElement.focus();
+    }
   }
 
   ok() {
