@@ -1,3 +1,5 @@
+import { ValidatorFn } from '@angular/forms';
+
 export class NgxRxAlertModel {
   constructor(
     public title: string,
@@ -5,7 +7,8 @@ export class NgxRxAlertModel {
     public type: 'success' | 'warning' | 'info' | 'error' = 'info',
     public disableClose?: boolean,
     public hasInput?: boolean,
-    public inputType: 'input' | 'textarea' = 'textarea'
+    public inputType: 'input' | 'textarea' = 'textarea',
+    public inputValidator: ValidatorFn | ValidatorFn[] | null = null
   ) {
   }
 }

@@ -1,9 +1,10 @@
 import { NgxRxModalService } from 'ngx-rx-modal';
 
-import { ComponentFactoryResolver, Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { NgxRxAlertModel, DIALOG_TYPE, NgxRxAlertOption } from './ngx-rx-alert.model';
 import { NgxRxAlertComponent } from './ngx-rx-alert.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class NgxRxAlertService {
 
   constructor(
     private _modal: NgxRxModalService,
-    private _factory: ComponentFactoryResolver
+    private _factory: ComponentFactoryResolver,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
   confirm(obj: NgxRxAlertModel | string, option: NgxRxAlertOption = {}): Observable<any> {
@@ -73,9 +75,8 @@ export class NgxRxAlertService {
     });
   }
 
-
   changeNomalAlert() {
-    if (window) {
+    if (isPlatformBrowser(this.platformId)) {
       window.alert = (msg) => { this.alert(msg).subscribe(); };
     }
   }

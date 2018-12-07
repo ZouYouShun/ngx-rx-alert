@@ -5,44 +5,52 @@
       <mat-icon [ngClass]="typeData.class">{{typeData.icon}}</mat-icon>
 
       <!-- <i class="mat-icon material-icons" [ngClass]="typeData.class">{{typeData.icon}}</i> -->
-      <span *ngIf="data.title">{{data.title}}</span>
+      <span *ngIf="data.title">{{data.title}}!!!</span>
       <!-- use for center the title  -->
       <i></i>
     </h2>
     <article [innerHTML]="data.message">
     </article>
     <ng-container *ngIf="data.hasInput">
+      <form [formGroup]="formGroup" (ngSubmit)="ok()">
+        <ng-container [ngSwitch]="data.inputType">
 
-      <ng-container [ngSwitch]="data.inputType">
+          <ng-container *ngSwitchCase="'textarea'">
+            <mat-form-field color="accent" class="width-full" *ngIf="data.inputType==='textarea'">
+              <textarea matInput
+                formControlName="message"
+                cdkFocusInitial
+                [required]="isRequired"
+                matTextareaAutosize
+                matAutosizeMaxRows="3"
+                matAutosizeMinRows="3"
+                autocomplete="off"></textarea>
+              <mat-error *ngIf="message.invalid && message.errors['required']">欄位必須填寫</mat-error>
+            </mat-form-field>
+          </ng-container>
 
-        <ng-container *ngSwitchCase="'textarea'">
-          <mat-form-field color="accent" class="width-full" *ngIf="data.inputType==='textarea'">
-            <textarea matInput [(ngModel)]="message" cdkFocusInitial
-              matTextareaAutosize
-              matAutosizeMaxRows="3"
-              matAutosizeMinRows="3"
-              autocomplete="off"></textarea>
-          </mat-form-field>
+          <ng-container *ngSwitchCase="'input'">
+            <mat-form-field color="accent" class="width-full">
+              <input matInput
+                cdkFocusInitial
+                autocomplete="off"
+                formControlName="message">
+              <mat-error *ngIf="message.invalid && message.errors['required']">欄位必須填寫</mat-error>
+            </mat-form-field>
+          </ng-container>
+
         </ng-container>
-
-        <ng-container *ngSwitchCase="'input'">
-          <mat-form-field color="accent" class="width-full">
-            <input matInput cdkFocusInitial autocomplete="off" [(ngModel)]="message" (keyup.enter)="ok()">
-          </mat-form-field>
-        </ng-container>
-
-      </ng-container>
-
+      </form>
     </ng-container>
   </div>
 
   <div class="button-area">
+    <button mat-raised-button color="primary"
+            (click)="ok()" #okElm
+            cdkFocusInitial>確定</button>
     <button mat-raised-button
             *ngIf="isConfirm"
             color="warn"
             (click)="cancel()" >取消</button>
-    <button mat-raised-button color="primary"
-            (click)="ok()" #okElm
-            cdkFocusInitial>確定</button>
   </div>
 </div>
