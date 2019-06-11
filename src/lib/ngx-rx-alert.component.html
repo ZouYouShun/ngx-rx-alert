@@ -5,7 +5,7 @@
       <mat-icon [ngClass]="typeData.class">{{typeData.icon}}</mat-icon>
 
       <!-- <i class="mat-icon material-icons" [ngClass]="typeData.class">{{typeData.icon}}</i> -->
-      <span *ngIf="data.title">{{data.title}}!!!</span>
+      <span *ngIf="data.title">{{data.title}}</span>
       <!-- use for center the title  -->
       <i></i>
     </h2>
@@ -16,7 +16,7 @@
         <ng-container [ngSwitch]="data.inputType">
 
           <ng-container *ngSwitchCase="'textarea'">
-            <mat-form-field color="accent" class="width-full" *ngIf="data.inputType==='textarea'">
+            <mat-form-field color="accent" class="w-100" *ngIf="data.inputType==='textarea'">
               <textarea matInput
                 formControlName="message"
                 cdkFocusInitial
@@ -30,7 +30,7 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="'input'">
-            <mat-form-field color="accent" class="width-full">
+            <mat-form-field color="accent" class="w-100">
               <input matInput
                 cdkFocusInitial
                 autocomplete="off"

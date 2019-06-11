@@ -34,19 +34,19 @@ export class NgxRxAlertComponent implements NgxRxModalRef, AfterViewInit {
   classList = {
     success: {
       icon: 'check_circle', // cycle ˇ
-      class: 'c-green'
+      class: 'text-success'
     },
     warning: {
       icon: 'warning', // triangle !
-      class: 'c-yellow'
+      class: 'text-warning'
     },
     info: {
       icon: 'info',  // cycle !
-      class: 'c-accent'
+      class: 'text-accent'
     },
     error: {
       icon: 'highlight_off',  // cycle x
-      class: 'c-warn'
+      class: 'text-danger'
     }
   };
 

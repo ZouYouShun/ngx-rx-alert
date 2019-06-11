@@ -63,6 +63,8 @@ export class NgxRxAlertService {
             width: '50%',
           },
           windowAnimate: animate,
+
+          backdropStyle: option.backdropStyle,
           noRedirect: option.noRedirect
         })
         .subscribe(result => {

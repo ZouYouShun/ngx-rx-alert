@@ -20,4 +20,5 @@ export const enum DIALOG_TYPE {
 
 export interface NgxRxAlertOption {
   noRedirect?: boolean;
+  backdropStyle?: any;
 }
