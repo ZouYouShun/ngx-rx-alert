@@ -1,9 +1,10 @@
-import { Component, HostListener, Inject, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { NgxRxModalRef, NGX_RX_MODAL_TOKEN } from 'ngx-rx-modal';
-import { NgxRxAlertModel, DIALOG_TYPE } from './ngx-rx-alert.model';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { NGX_RX_MODAL_TOKEN, NgxRxModalRef } from 'ngx-rx-modal';
+import { Subject } from 'rxjs';
+
+import { DIALOG_TYPE, NgxRxAlertModel } from './ngx-rx-alert.model';
 
 interface InputData {
   data: NgxRxAlertModel;
@@ -16,7 +17,7 @@ interface InputData {
   styleUrls: ['./ngx-rx-alert.component.scss']
 })
 export class NgxRxAlertComponent implements NgxRxModalRef, AfterViewInit {
-  @ViewChild('okElm', { read: ElementRef }) okElm: ElementRef;
+  @ViewChild('okElm', { read: ElementRef, static: true }) okElm: ElementRef;
   complete = new Subject();
 
   isRequired = true;
