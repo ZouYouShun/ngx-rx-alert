@@ -3,7 +3,7 @@
   "dest": "../../dist/ngx-rx-alert",
   "deleteDestPath": false,
   "lib": {
-    "entryFile": "src/public_api.ts",
+    "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "ngx-rx-modal": "ngx-rx-modal"
     }
