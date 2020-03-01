@@ -8,14 +8,13 @@ export class NgxRxAlertModel {
     public disableClose?: boolean,
     public hasInput?: boolean,
     public inputType: 'input' | 'textarea' = 'textarea',
-    public inputValidator: ValidatorFn | ValidatorFn[] | null = null
-  ) {
-  }
+    public inputValidator: ValidatorFn | ValidatorFn[] | null = null,
+  ) {}
 }
 
 export const enum DIALOG_TYPE {
   ALERT,
-  CONFIRM
+  CONFIRM,
 }
 
 export interface NgxRxAlertOption {

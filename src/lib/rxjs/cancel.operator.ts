@@ -1,4 +1,4 @@
-import { ObservableInput, of, MonoTypeOperatorFunction } from 'rxjs';
+import { MonoTypeOperatorFunction, ObservableInput, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 export const cancel = <T = any>(cb: (d: T) => void): MonoTypeOperatorFunction<any> =>

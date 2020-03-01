@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NGX_RX_MODAL_TOKEN, NgxRxModalRef } from 'ngx-rx-modal';
@@ -14,7 +21,7 @@ interface InputData {
 @Component({
   selector: 'ngx-rx-alert',
   templateUrl: './ngx-rx-alert.component.html',
-  styleUrls: ['./ngx-rx-alert.component.scss']
+  styleUrls: ['./ngx-rx-alert.component.scss'],
 })
 export class NgxRxAlertComponent implements NgxRxModalRef, AfterViewInit {
   @ViewChild('okElm', { read: ElementRef, static: true }) okElm: ElementRef;
@@ -26,7 +33,9 @@ export class NgxRxAlertComponent implements NgxRxModalRef, AfterViewInit {
     message: ['', []],
   });
 
-  get message() { return this.formGroup.get('message'); }
+  get message() {
+    return this.formGroup.get('message');
+  }
 
   isConfirm = false;
 
@@ -35,34 +44,37 @@ export class NgxRxAlertComponent implements NgxRxModalRef, AfterViewInit {
   classList = {
     success: {
       icon: 'check_circle', // cycle ˇ
-      class: 'text-success'
+      class: 'text-success',
     },
     warning: {
       icon: 'warning', // triangle !
-      class: 'text-warning'
+      class: 'text-warning',
     },
     info: {
-      icon: 'info',  // cycle !
-      class: 'text-accent'
+      icon: 'info', // cycle !
+      class: 'text-accent',
     },
     error: {
-      icon: 'highlight_off',  // cycle x
-      class: 'text-danger'
-    }
+      icon: 'highlight_off', // cycle x
+      class: 'text-danger',
+    },
   };
 
   @HostListener('document:keydown.escape') // , ['$event']
-  onKeydownHandler() { // evt: KeyboardEvent
+  onKeydownHandler() {
+    // evt: KeyboardEvent
     this.cancel();
   }
 
   constructor(
     @Inject(NGX_RX_MODAL_TOKEN) source: InputData,
     private _fb: FormBuilder,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
   ) {
     this.data = source.data;
-    this.data.message = this._sanitizer.bypassSecurityTrustHtml(this.data.message) as string;
+    this.data.message = this._sanitizer.bypassSecurityTrustHtml(
+      this.data.message,
+    ) as string;
 
     this.isConfirm = source.type === DIALOG_TYPE.CONFIRM;
 

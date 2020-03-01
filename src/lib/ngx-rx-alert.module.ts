@@ -1,4 +1,3 @@
-import { A11yModule } from '@angular/cdk/a11y';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { NgxRxAlertComponent } from './ngx-rx-alert.component';
-
+import { A11yModule } from '@angular/cdk/a11y';
 
 @NgModule({
   imports: [
@@ -16,13 +15,9 @@ import { NgxRxAlertComponent } from './ngx-rx-alert.component';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
-    A11yModule
+    A11yModule,
   ],
-  declarations: [
-    NgxRxAlertComponent,
-  ],
-  entryComponents: [
-    NgxRxAlertComponent
-  ]
+  declarations: [NgxRxAlertComponent],
+  entryComponents: [NgxRxAlertComponent],
 })
-export class NgxRxAlertModule { }
+export class NgxRxAlertModule {}
